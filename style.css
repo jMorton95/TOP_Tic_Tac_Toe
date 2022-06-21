@@ -1,0 +1,30 @@
+:root{
+    --font: 'Roboto', 'Courier New', monospace, sans-serif;
+    --title-font-color: red;
+    --menu-font-color: black;
+    --gameboard-font-color: black;
+    --gameboard-base-color: white;
+    --gameboard-hover-color: grey;
+    --gameboard-selected-color: black;
+    --gameboard-border-color: black;
+    --footer-font-color: red;
+    --alert-winner-font-color: green;
+    --alert-loser-font-color: red;
+    --button-border-color: black;
+    --button-color: blue;
+    --button-hover-color: darkblue;
+    --button-click-color: gold;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: var(--font);
+}
+
+.test{
+    height: 400px;
+    width: 400px;
+    border: 1px solid var(--gameboard-border-color);
+}
