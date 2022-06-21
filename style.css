@@ -32,6 +32,7 @@ body{
     grid: min(15vh, 200px) 1fr min(5vh, 100px) / 200px 1fr 200px;
 }
 
+/* ---- TOP ROW ---- */
 .navCenter{
     display: grid;
     grid-template-rows: 33% 1fr;
@@ -39,7 +40,52 @@ body{
 .title{
     display: flex;
     justify-content: center;
+}.selection{
+    display: flex;
 }
+.sub-half{
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+}
+.player{
+    width: 29%;
+    height: auto;
+}
+.input{
+    width: 59%;
+}
+.check{
+    width: 9%;
+}
+.bot{
+    width: 15%
+}
+.diff{
+    width: 15%;
+}
+
+.sub-half:first-child > :not(:first-child){
+    display: none;
+}
+
+.inputActive{
+    display: block;
+}
+.red{
+    background-color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
 .mainLeft{
 
 }
