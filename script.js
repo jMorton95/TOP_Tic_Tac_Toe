@@ -5,10 +5,8 @@ const SelectorMenu = (() => {
     const hover = function (eventParam) {
         let playerSiblings = document.querySelectorAll(`#${eventParam.target.id} ~ div`);
         for (let elem of playerSiblings){
-          elem.classList.add('red');
-        
-        }
-     }
+          elem.classList.add('red'); } 
+      }
 
     return { players, hover };
 })();
