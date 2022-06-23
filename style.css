@@ -49,14 +49,15 @@ body{
     justify-content: space-between;
 }
 .player{
-    width: 29%;
+    flex-grow: 2;
+    flex-basis: end;
     height: auto;
 }
 .input{
-    width: 59%;
+    flex-grow: 5;
 }
 .check{
-    width: 9%;
+    flex-grow: 1;
 }
 .bot{
     width: 15%
@@ -69,13 +70,17 @@ body{
 
 }
 
+.inputInactive{
+    display: hidden;
+    flex-grow: 0;
+}
 .inputActive{
     display: block;
-}
-.red{
     background-color: red;
-    display: block;
+    transition: all 1s;
+
 }
+
 
 
 
