@@ -1,5 +1,6 @@
 :root{
     --font: 'Roboto', 'Courier New', monospace, sans-serif;
+    --baseFontSize: 18px;
     --title-font-color: red;
     --menu-font-color: black;
     --gameboard-font-color: black;
@@ -22,6 +23,7 @@
     padding: 0px;
     box-sizing: border-box;
     font-family: var(--font);
+    font-size: var(--baseFontSize);
     border: 1px solid black;
 }
 
@@ -50,8 +52,13 @@ body{
 }
 .player{
     flex-grow: 2;
-    flex-basis: end;
     height: auto;
+    flex-wrap: wrap;
+    transition: all 1.5s;
+}
+.player:hover{
+    flex-grow: 0.5;
+    font-size: 0.75rem;
 }
 .input{
     flex-grow: 5;
