@@ -1,4 +1,5 @@
 const SelectorMenu = (() => {
+  "use strict";
     const players = document.querySelectorAll('.player');
     const menus = document.querySelectorAll('.sub-half');
 
@@ -29,6 +30,6 @@ SelectorMenu.players.forEach(player => player.addEventListener('mouseover', (e) 
        }));
 
 SelectorMenu.menus.forEach(subHalf => subHalf.addEventListener('mouseout', (e) => {
-              if (e.target.classList == 'sub-half') SelectorMenu.reset(e) || console.log(e.target.classList);
+              if (e.target.classList == 'sub-half') SelectorMenu.reset(e);
       }));
 
