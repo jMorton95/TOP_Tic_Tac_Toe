@@ -8,22 +8,28 @@ const SelectorMenu = (() => {
         for (let elem of playerSiblings){
           elem.classList.add('inputActive'); 
           elem.classList.remove('inputInactive');
-        } 
-      };
+    }};
 
     const reset = function (e) {
       const children = document.querySelectorAll(`#${e.target.id} > :not(:first-child)`);
         for (let elem of children){
            elem.classList.remove('inputActive');
            elem.classList.add('inputInactive');
-        }
+    }};
+
+    const setPlayerOne = function (input) {
+        return input.textContent;
+    };
+
+    const setPlayerTwo = function (input){
+        //Consider Factory Function to set Bot Difficulties.
+        //Decide return value as either a user form input, or Bot Object
     };
 
     return { players, menus, hover, reset };
 })();
 
-
-
+//Consider BOT Template object, used as a prototype for BOT Difficulties.
 
 SelectorMenu.players.forEach(player => player.addEventListener('mouseover', (e) => {
             SelectorMenu.hover(e);

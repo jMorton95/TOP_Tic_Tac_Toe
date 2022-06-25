@@ -18,3 +18,4 @@ Find solution for adding classes to Elements through Factory Function WHILE mous
 Embed Event Listeners into privately scoped function.
 
 Revert to Default when Sub-Half is exited.
+--Added with Mouseout Event, but require more complete solution.

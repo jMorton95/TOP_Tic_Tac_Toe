@@ -49,23 +49,26 @@ body{
     display: flex;
     flex: 1 1 auto;
     justify-content: space-between;
+    transition: all 2s;
 }
 .player{
     flex-grow: 1;
-    text-align: center;
+    /*text-align: center;*/
     height: auto;
-    flex-wrap: wrap;
-    transition: all 1.5s;
+    transition: all 2s;
+    flex-wrap: nowrap;
+
+    text-indent: 75%;
+
 }
-.player:hover{
-    flex-grow: 0.5;
-    font-size: 0.75rem;
+.sub-half:hover > :first-child{
+    text-indent: 0;
 }
 .input{
-    flex-grow: 5;
+    flex-grow: 8;
 }
 .check{
-    flex-grow: 0.5;
+    flex-grow: 1;
 }
 .bot{
     width: 15%
