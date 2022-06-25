@@ -1,23 +1,24 @@
 const SelectorMenu = (() => {
     const players = document.querySelectorAll('.player');
     const menus = document.querySelectorAll('.sub-half');
-    //Consider adding event listener here
 
-    const hover = function (eventParam) {
-        let playerSiblings = document.querySelectorAll(`#${eventParam.target.id} ~ div`);
+    const hover = function (e) {
+        let playerSiblings = document.querySelectorAll(`#${e.target.id} ~ div`);
         for (let elem of playerSiblings){
           elem.classList.add('inputActive'); 
-          elem.classList.remove('inputInactive') } 
-      }
+          elem.classList.remove('inputInactive');
+        } 
+      };
 
-    const reset = function (eventParam) {
-      const children = document.querySelectorAll('.sub-half > :not(:first-child)');
+    const reset = function (e) {
+      const children = document.querySelectorAll(`#${e.target.id} > :not(:first-child)`);
         for (let elem of children){
            elem.classList.remove('inputActive');
+           elem.classList.add('inputInactive');
         }
     };
 
-    return { players, menus, hover };
+    return { players, menus, hover, reset };
 })();
 
 
@@ -28,6 +29,6 @@ SelectorMenu.players.forEach(player => player.addEventListener('mouseover', (e) 
        }));
 
 SelectorMenu.menus.forEach(subHalf => subHalf.addEventListener('mouseout', (e) => {
-              SelectorMenu.reset();
+              if (e.target.classList == 'sub-half') SelectorMenu.reset(e) || console.log(e.target.classList);
       }));
 

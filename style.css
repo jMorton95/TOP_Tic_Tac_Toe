@@ -51,7 +51,8 @@ body{
     justify-content: space-between;
 }
 .player{
-    flex-grow: 2;
+    flex-grow: 1;
+    text-align: center;
     height: auto;
     flex-wrap: wrap;
     transition: all 1.5s;
@@ -64,7 +65,7 @@ body{
     flex-grow: 5;
 }
 .check{
-    flex-grow: 1;
+    flex-grow: 0.5;
 }
 .bot{
     width: 15%
@@ -73,6 +74,10 @@ body{
     width: 15%;
 }
 
+.sub-half > *{
+    align-self: center;
+    height: 75%;
+}
 .sub-half:first-child > :not(:first-child){
 
 }
@@ -80,11 +85,12 @@ body{
 .inputInactive{
     display: hidden;
     flex-grow: 0;
+    transition: all 2s;
 }
 .inputActive{
     display: block;
     background-color: red;
-    transition: all 1s;
+    transition: all 2s;
 
 }
 
