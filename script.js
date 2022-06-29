@@ -3,7 +3,19 @@ const SelectorMenu = (() => {
     const players = document.querySelectorAll('.player');
     const menus = document.querySelectorAll('.sub-half');
 
-    const hover = function (e) {
+    const setPlayerOne = function (input) {
+        return input.textContent;
+    };
+
+    const setPlayerTwo = function (input){
+        //Consider Factory Function to set Bot Difficulties.
+        //Decide return value as either a user form input, or Bot Object
+    };
+
+    return { players, menus};
+
+// CSS SOLUTION FOUND INSTEAD
+    /*const hover = function (e) {
         let playerSiblings = document.querySelectorAll(`#${e.target.id} ~ div`);
         for (let elem of playerSiblings){
           elem.classList.add('inputActive'); 
@@ -15,27 +27,10 @@ const SelectorMenu = (() => {
         for (let elem of children){
            elem.classList.remove('inputActive');
            elem.classList.add('inputInactive');
-    }};
+    }};*/
 
-    const setPlayerOne = function (input) {
-        return input.textContent;
-    };
 
-    const setPlayerTwo = function (input){
-        //Consider Factory Function to set Bot Difficulties.
-        //Decide return value as either a user form input, or Bot Object
-    };
 
-    return { players, menus, hover, reset };
 })();
 
 //Consider BOT Template object, used as a prototype for BOT Difficulties.
-
-SelectorMenu.players.forEach(player => player.addEventListener('mouseover', (e) => {
-            SelectorMenu.hover(e);
-       }));
-
-SelectorMenu.menus.forEach(subHalf => subHalf.addEventListener('mouseout', (e) => {
-              if (e.target.classList == 'sub-half') SelectorMenu.reset(e);
-      }));
-

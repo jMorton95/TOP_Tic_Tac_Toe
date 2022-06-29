@@ -35,68 +35,122 @@ body{
 }
 
 /* ---- TOP ROW ---- */
+/* - Title Area - */
 .navCenter{
     display: grid;
     grid-template-rows: 33% 1fr;
 }
-.title{
+.title, .selection{
     display: flex;
     justify-content: center;
 }
-.selection{
-    display: flex;
-}
+
+/* - Menu Left - */
 .sub-half{
     display: flex;
+    align-content: center;
+    max-width: 50%;
     flex: 1 1 auto;
-    justify-content: space-between;
-    transition: all 2s ease;
 }
+
+#h-1:hover > :nth-child(2){
+    flex-grow: 8;
+}
+#h-1:hover > :nth-child(2) > input {
+    width: 100%;
+    opacity: 1;
+}
+#h-1:hover > :nth-child(3){
+    flex-grow: 0.5;
+}
+.sub-half > *{
+    height: 100%;
+}
+
 .player{
     flex-grow: 1;
     white-space: nowrap;
-    height: auto;
-    transition: all 1.5s ease-out;
-    flex-wrap: nowrap;
-    text-indent: 65%;   
-
+    transition: all 2s ease;
+    text-align: end;
+    padding-right: 5%;
 }
-.sub-half:hover > :first-child{
-    text-indent: 0;
+.input, .check{
+    width: min-content;
+    transition: all 2s;
 }
 .input{
     display: flex;
-    flex-grow: 8;
+    align-items: center;
+    max-width: min(30vw, 500px);
+    justify-content: end;
 }
-.input input{
-   flex-grow: 1;
+.input *{
+    width: 0%;
+    height: 50px;
+    opacity: 0;
+    background-color: red;
+    transition: all 2s ease;
+    border-radius: 24px
 }
-.check{
+
+.check{}
+
+
+/* - Menu Right - */
+.sub-quart{
+    display: flex;
+    justify-content: start;
+    transition: all 2s ease;
+}
+.sub-quart > :first-child{
+    max-width: 200px;
+    width: 150px;   
+    text-align: start;
+}
+.sub-quart > :not(:first-child){
+    width: 0px;
+}
+.sub-quart > .input{
+    justify-content: start;
+}
+#q-1:hover {
     flex-grow: 1;
 }
-.bot, .diff{
-    width: 15%
+
+#q-1:hover > :nth-child(1){
+    flex-grow: 1;
+}
+#q-1:hover > :nth-child(2){
+    flex-grow: 10;
+}
+#q-1:hover > .check{
+    flex-grow: 0.5;
+    max-width: 75px;
+}
+#q-1:hover > :nth-child(2) > input{
+    opacity: 1;
+    width: 100%;
+}
+
+#q-2:hover {
+    flex-grow:0.8;
+}
+#q-2:hover > :not(:first-child) {
+    flex-grow: 1;
+}
+.diff{
+    background: red;
 }
 
 
 
-.sub-half > *{
-    align-self: center;
-    height: 75%;
-}
-.sub-half:first-child > :not(:first-child){
 
-}
 
-.inputInactive{
-    flex-grow: 0;
-    transition: all 2s;
-}
-.inputActive{
-    background-color: red;
-    transition: all 2s;
 
-}
+
+
+
+
 
 
 
