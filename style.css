@@ -42,40 +42,43 @@ body{
 .title{
     display: flex;
     justify-content: center;
-}.selection{
+}
+.selection{
     display: flex;
 }
 .sub-half{
     display: flex;
     flex: 1 1 auto;
     justify-content: space-between;
-    transition: all 2s;
+    transition: all 2s ease;
 }
 .player{
     flex-grow: 1;
-    /*text-align: center;*/
+    white-space: nowrap;
     height: auto;
-    transition: all 2s;
+    transition: all 1.5s ease-out;
     flex-wrap: nowrap;
-
-    text-indent: 75%;
+    text-indent: 65%;   
 
 }
 .sub-half:hover > :first-child{
     text-indent: 0;
 }
 .input{
+    display: flex;
     flex-grow: 8;
+}
+.input input{
+   flex-grow: 1;
 }
 .check{
     flex-grow: 1;
 }
-.bot{
+.bot, .diff{
     width: 15%
 }
-.diff{
-    width: 15%;
-}
+
+
 
 .sub-half > *{
     align-self: center;
@@ -86,12 +89,10 @@ body{
 }
 
 .inputInactive{
-    display: hidden;
     flex-grow: 0;
     transition: all 2s;
 }
 .inputActive{
-    display: block;
     background-color: red;
     transition: all 2s;
 
