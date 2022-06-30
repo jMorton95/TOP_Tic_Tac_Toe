@@ -14,22 +14,6 @@ const SelectorMenu = (() => {
 
     return { players, menus};
 
-// CSS SOLUTION FOUND INSTEAD
-    /*const hover = function (e) {
-        let playerSiblings = document.querySelectorAll(`#${e.target.id} ~ div`);
-        for (let elem of playerSiblings){
-          elem.classList.add('inputActive'); 
-          elem.classList.remove('inputInactive');
-    }};
-
-    const reset = function (e) {
-      const children = document.querySelectorAll(`#${e.target.id} > :not(:first-child)`);
-        for (let elem of children){
-           elem.classList.remove('inputActive');
-           elem.classList.add('inputInactive');
-    }};*/
-
-
 
 })();
 
