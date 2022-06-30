@@ -1,20 +1,33 @@
 const SelectorMenu = (() => {
-  "use strict";
-    const players = document.querySelectorAll('.player');
-    const menus = document.querySelectorAll('.sub-half');
 
-    const setPlayerOne = function (input) {
-        return input.textContent;
-    };
+    
+  const players = [];
+  const _checks = document.querySelectorAll('.check');
 
-    const setPlayerTwo = function (input){
-        //Consider Factory Function to set Bot Difficulties.
-        //Decide return value as either a user form input, or Bot Object
-    };
+  const _Player = (playerName, e) => {
 
-    return { players, menus};
+      function _findPlayerNum(e){ 
+        if (e == "c-1") {
+          return 1;
+        } else if (e == "c-2"){
+          return 2;
+        };
+      };
+
+      const playerNum = _findPlayerNum(e);
+
+      return {playerName, playerNum};
+  };
+    
+  _checks.forEach(check => check.addEventListener('click', (e) => {
+        const newPlayer = _Player('New', e.target.id);
+        players.push(newPlayer);
+        
+  }));
+
+   
+return { players };
 
 
 })();
 
-//Consider BOT Template object, used as a prototype for BOT Difficulties.
