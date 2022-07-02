@@ -1,12 +1,57 @@
 :root{
     font-size: 20px;
     font-family: 'Ubuntu', sans-serif;
-    --fontColor: hsl(233, 5%, 50%);
-    --fontShadow: 8px 7px hsl(214, 25%, 10%);
+    --grey: hsl(233, 5%, 50%);
+    --dark:  hsl(220, 50%, 18%);
+    --light: hsl(220, 60%, 84%);
+    --purple: hsl(297, 70%, 40%);
 
 }
+*{
+    color: var(--dark);
+    transition: all 0.5s linear;
+}
+@media only screen and (max-width: 1300px)  {
+    /*Small Screens (I.E My Laptop)*/
+    p{
+        font-size: 3rem;
+        text-shadow: 4px 3px var(--grey);
+    }
+    p:hover{
+        color: var(--light);
+        text-shadow: 4px 3px var(--purple);
+
+    }
+}
+@media only screen and (min-width: 1301px) {
+    /*Large Screens (I.E My PC Monitor)*/
+    p{
+        font-size: 5rem;
+        text-shadow: 8px 6px var(--grey);
+    }
+
+    p:hover{
+        color: var(--light);
+        text-shadow: 8px 6px var(--purple);
+    }
+}
+
 p{
-    font-size: 5rem;
-    color: var(--fontColor);
-    text-shadow: var(--fontShadow);
+    /*text-shadow: 8px 6px var(--grey);*/
+}
+
+button{
+    color: var(--black);
+    font-size: 0.8rem;
+    height: 45px;
+    width: 100px;
+    background-color: var(--grey);
+    border: none;
+    outline: none;
+    border-radius: 16px;
+}
+
+button:hover{
+    color: var(--light);
+    background-color: var(--purple);
 }
