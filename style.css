@@ -64,6 +64,9 @@ header{
     flex: 1 1 auto;
 }
 main{
+    display: flex;
+    justify-content: center;
+    align-items: start;
     flex: 0 1 auto;
 }
 footer{
@@ -132,15 +135,27 @@ form{
     display: none;
     
 }
+
+/*Control display of Form Elements when Selecting Game Modes*/
 .inputs:focus-within > div > button {
     display: none;
 }
-
 .inputs:focus-within > div:focus-within > form {
     display: flex;
 }
 .inputs:focus-within > div:focus-within > form * {
     margin-right: 5px;
+}
+
+/* --- Game Board Properties --- */
+.gameBoard{
+    display: grid;
+    height: 75%;
+    aspect-ratio: 1/1;
+    grid: repeat(3, 1fr) / repeat(3, 1fr);
+}
+.gbSection{
+    border: 1px solid black;
 }
 
 

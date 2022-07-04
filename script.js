@@ -1,37 +1,38 @@
 const GameSetup = (() => {
   const players = [];
-  const gameBoard = [];
+  let gameBoard;
   const _startButtons = document.querySelectorAll('.startButton');
-
+  
+//Factory Functions that Return our Player or Computer Objects.
   const _Player = (playerName, playerNum) => {
-    //Factory Function that Returns a Player Object.
-    /*Need to add properties for incrementing a win counter*/
+    
+/*Need to add properties for incrementing a win counter*/
     return {playerName, playerNum};
-  }
+  };
+  const _Computer = () => {
+    return {};
+  };
    
+//Create and Append 9 GameBoard Section Elements.
   function _startGame(){
-    //Create and Append 9 GameBoard Section Elements.
+    gameBoard = document.querySelector('.gameBoard');
     for (let x = 0; x < 9; x++){
         const element = document.createElement('div');
         element.classList.add('gbSection');
-        gameBoard.push(element);
+        gameBoard.append(element);
       }
-
+    gameBoard = document.querySelectorAll('.gbSection');
+    let inputContainer = document.querySelector('.inputs');
     let main = document.querySelector('main');
-    main.append(gameBoard);
-
-    let inputs = document.querySelector('.inputs');
-    inputs.style = "display: none";
-    main.style = "flex-grow: 5";
-  }
-
-  /* Func That appends player names or BOT to Tags*/
+    inputContainer.style = "display: none";
+    main.style = "flex-grow: 8";
+  };
   
-  //Assign Event Handling to our Start Buttons + Conditions for Deciding Game State.
+//Assign Event Handling to our Start Buttons + Conditions for Deciding Game State.
   _startButtons.forEach(startButton => startButton.addEventListener('click', (e) => {
     e.preventDefault();
 
-    /*First Select all Form Text Fields related to our Start Buttons*/
+  /*First Select all Form Text Fields related to our Start Buttons*/
     let inputs = (() => {
         const positives = [];
           let textBoxes = document.querySelectorAll('input[type=text]');
@@ -43,7 +44,7 @@ const GameSetup = (() => {
           return positives;
     })();
 
-    /*Create our Player Objects */
+  /*Create our Player Objects */
     const createPlayers = (() => {
       for (x = 0; x < inputs.length; x++){
         let newPlayer = _Player(inputs[x], x+1);
@@ -54,9 +55,9 @@ const GameSetup = (() => {
         players.push(newComputer);
       };
    })();
-
-   console.log(players);
    
+   _startGame();
+
   }));
 
 return { players, gameBoard };
