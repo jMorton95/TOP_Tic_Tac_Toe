@@ -16,7 +16,7 @@
     transition: all 0.5s linear;
     
 }
-
+/* --- Media Queries and KeyFrames --- */
 @media only screen and (max-width: 1300px)  {
     /*Small Screens (I.E My Laptop)
       To make the Main text take up less screen space, scale all attributes appropriately*/
@@ -49,7 +49,7 @@
         text-shadow: var(--shadowSize) var(--purple);
      }
 }
-
+/* --- General Page Structure ---*/
 body{
     display: flex;
     flex-direction: column;
@@ -72,26 +72,73 @@ footer{
     height: 35px;
 }
 
-input{
+/* --- Global Element Styles ---*/
+p{
+    user-select: none;
+    font-weight: bold;
+}
+input[type=text]{
     display: block;
-    border: 2px solid black;
-    height: 50px;
-    width: 10rem;
+    opacity: 0;
+    width: 0px;
+    height: 0px;
+    font-size: 1rem;
+    border-radius: 6px;
+    text-align: center;
+}
+input[type=text]:focus{
+    
 }
 button{
-    color: var(--purple);
+    transition: all 500ms ease-in;
+    color: white;
     cursor: pointer;
     font-size: 0.8rem;
     height: 50px;
     width: 135px;
-    background-color: var(--light);
+    background: linear-gradient(90deg, var(--dark) 35%, var(--light) 100%);
     border: none;
     border-radius: 6px;
+    box-shadow: 2px 2px 2px var(--dark);
 }
 button:hover{
-    color: var(--light);
-    background-color: var(--purple);
-    font-size: 0.85rem;
+    background: var(--grey);
+    border: 1px solid var(--dark);
+    padding: 0px;
+    /*font-size: 0.85rem;*/
+}
+
+/* --- Header Properties --- */
+.inputs, .player, .computer{
+    display: flex;
+    justify-content: center;
+}
+.inputs{
+    width: 100vw;
+    height: 50px;
+}
+.inputs > div, .inputs > div > input{
+    margin-left: 7.5px;
+}
+/*Display Text Fields*/
+.player:focus-within > input, .computer:focus-within > input{
+    opacity: 1;
+    border: 1px solid black;
+    height: 49px;
+    width: 10rem;
+}
+.inputs:focus-within :nth-child(2) > :first-child, .inputs:focus-within :last-child > :first-child {
+    display: none;
+}
+.startButton{
+    display: none;
+}
+.inputs:focus-within .startButton{
+    display: block;
+  /*   transform: all 1ms linear;
+    height: 50px;
+    width: 135px; 
+    opacity: 1; */
 }
 
 

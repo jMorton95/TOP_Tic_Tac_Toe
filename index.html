@@ -6,37 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
-    <style>
+    <script defer>
         
-        input, .start{
-            display: none;
+        
+        function startGame() {
+            let inputs = document.querySelector('.inputs');
+            let main = document.querySelector('main');
+            inputs.style = "display: none";
+            main.style = "flex-grow: 5";
         }
-        .inputs{
-            display: flex;
-        }
-        .inputs:focus-within button{
-            display: none;
-        }
-        .inputs:focus-within + .start {
-            display: block;
-        }
-        .player:focus-within ~ input{
-            display: block;
-        }
-    </style>
+    </script>
 </head>
 <body>
     <header>
         <p class="title">Tic Tac Toe</p>
         <div class="inputs">
-            <button class="player">Vs. Player</button>
-            <input type="text" name="" id="">
-            <input type="text" name="" id="">
-            <button class="computer">Vs. Computer</button>
+            <div class="start">
+                <button class="startButton" onclick="startGame()">Start Game!</button>
+            </div>
+            <div class="player">
+                <button id="player">Vs. Player</button>
+                <input type="text" placeholder="Player One">
+                <input type="text" placeholder="Player Two">
+            </div>
+            <div class="computer">
+                <button id="computer">Vs. Computer</button>
+                <input type="text" placeholder="Player One">
+            </div>
           </div>
-        <div class="start">
-            <button class="startButton" onclick="startGame()">Start Game!</button>
-        </div>
+       
     </header>
     <main></main>
     <footer>
