@@ -6,24 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
-    <script src="script.js" defer></script>
+    <!-- <script src="script.js" defer></script> -->
     </script>
 </head>
 <body>
     <header>
         <p class="title">Tic Tac Toe</p>
         <div class="inputs">
-            <div class="start">
-                <button class="startButton">Start Game!</button>
-            </div>
             <div class="player">
                 <button id="player">Vs. Player</button>
-                <input type="text" class="text" placeholder="Player One">
-                <input type="text" class="text" placeholder="Player Two">
+                <form class="playerForm">
+                    <button type="submit" class="startButton">Start Game!</button>
+                    <input type="text" class="text" placeholder="Player One Name">
+                    <input type="text" class="text" placeholder="Player Two Name">
+                </form>
             </div>
             <div class="computer">
                 <button id="computer">Vs. Computer</button>
-                <input type="text" class="text" placeholder="Player One">
+                <form class="computerForm">
+                    <button type="submit" class="startButton">Start Game!</button>
+                    <input type="text" class="text" placeholder="Player Name">
+                </form>
             </div>
           </div>
        

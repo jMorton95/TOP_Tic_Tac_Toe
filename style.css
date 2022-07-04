@@ -85,6 +85,7 @@ input[type=text]{
     font-size: 1rem;
     border-radius: 6px;
     text-align: center;
+    box-shadow: 2px 2px 2px var(--dark);
 }
 input[type=text]:focus{
     
@@ -105,7 +106,6 @@ button:hover{
     background: var(--grey);
     border: 1px solid var(--dark);
     padding: 0px;
-    /*font-size: 0.85rem;*/
 }
 
 /* --- Header Properties --- */
@@ -120,25 +120,27 @@ button:hover{
 .inputs > div, .inputs > div > input{
     margin-left: 7.5px;
 }
+
 /*Display Text Fields*/
-.player:focus-within > input, .computer:focus-within > input{
+.player:focus-within > .playerForm > input, .computer:focus-within > .computerForm > input{
     opacity: 1;
     border: 1px solid black;
     height: 49px;
     width: 10rem;
 }
-.inputs:focus-within :nth-child(2) > :first-child, .inputs:focus-within :last-child > :first-child {
+form{
+    display: none;
+    
+}
+.inputs:focus-within > div > button {
     display: none;
 }
-.startButton{
-    display: none;
+
+.inputs:focus-within > div:focus-within > form {
+    display: flex;
 }
-.inputs:focus-within .startButton{
-    display: block;
-  /*   transform: all 1ms linear;
-    height: 50px;
-    width: 135px; 
-    opacity: 1; */
+.inputs:focus-within > div:focus-within > form * {
+    margin-right: 5px;
 }
 
 
