@@ -1,18 +1,12 @@
 const GameSetup = (() => {
   const players = [];
   const gameBoard = [];
-  const _startButton = document.querySelector('.startButton');
+  const _startButtons = document.querySelectorAll('.startButton');
 
-  const _Player = (playerName, e) => {
-    //Factory Function that Returns a Player Object and stores it in our Players Array.
-    function _findPlayerNum(e) {
-        if (e == "c-1") {
-          return 1;
-        } else if (e == "c-2"){
-          return 2;
-    };};
-      const playerNum = _findPlayerNum(e);
-      return {playerName, playerNum};
+  const _Player = (playerName, playerNum) => {
+    //Factory Function that Returns a Player Object.
+    /*Need to add properties for incrementing a win counter*/
+    return {playerName, playerNum};
   }
    
   function _startGame(){
@@ -33,35 +27,41 @@ const GameSetup = (() => {
 
   /* Func That appends player names or BOT to Tags*/
   
-  //Assign Event Handling to our Selection Inputs + Conditions for Deciding Game State.
-  _startButton.addEventListener('click', (e) => {
-      const inputs = document.querySelectorAll('.text');
+  //Assign Event Handling to our Start Buttons + Conditions for Deciding Game State.
+  _startButtons.forEach(startButton => startButton.addEventListener('click', (e) => {
+    e.preventDefault();
 
+    /*First Select all Form Text Fields related to our Start Buttons*/
+    let inputs = (() => {
+        const positives = [];
+          let textBoxes = document.querySelectorAll('input[type=text]');
+            for (x = 0; x < textBoxes.length; x++){
+              if (textBoxes[x].id == e.target.id){
+                 positives.push(textBoxes[x].value);
+               }; 
+            };
+          return positives;
+    })();
 
-      const newPlayer = _Player();
+    /*Create our Player Objects */
+    const createPlayers = (() => {
+      for (x = 0; x < inputs.length; x++){
+        let newPlayer = _Player(inputs[x], x+1);
+        players.push(newPlayer);
+      }
+      if (players.length < 2){
+        let newComputer = { computerName: 'Bot' }; //Later Instantiate Computer Object from Function here.
+        players.push(newComputer);
+      };
+   })();
 
-  });
+   console.log(players);
+   
+  }));
+
 return { players, gameBoard };
-
-
 })();
 
 const GameBoard = (() => {
 
 })();
-
-
-  /* //Position newPlayer into our array depending on the Player Number.
-   if (newPlayer.playerNum === 1){
-    players[0] = newPlayer;
-  } else if (newPlayer.playerNum === 2){
-    players[1] = newPlayer;
-  } 
-  
-  //Check our Array contains both players before creating GameBoard.
-  if (players.includes(undefined) || players.length < 2){
-    console.log("fill in players");
-  } else {
-    console.log("both players found");
-  }
-  /*Include function to check if our array has 2 players inside, and if it does, begin the game.*/ */
