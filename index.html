@@ -4,62 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tac-Tac-Toe!</title>
-    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <title>Tic Tac Toe</title>
+    <style>
+        
+        input, .start{
+            display: none;
+        }
+        .inputs{
+            display: flex;
+        }
+        .inputs:focus-within button{
+            display: none;
+        }
+        .inputs:focus-within + .start {
+            display: block;
+        }
+        .player:focus-within ~ input{
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <nav>
-        <div class="navLeft"></div>
-
-        <div class="navCenter" >
-            <div class="title"><p id="title">Tic-Tac-Toe!</p></div>
-            <div class="selection">
-                <div class="sub-half" id="h-1">
-                    <div class="player" id="p1"><p>Player One</p></div>
-                    <div class="input"><input type="text"></div>
-                    <div class="check" id="c-1"></div>
-                </div>
-
-                <div class="sub-half" id="h-2">
-                    <div class="sub-quart" id="q-1">
-                        <div class="player" id="p2"><p>Player Two</p></div>
-                        <div class="input"><input type="text"></div>
-                        <div class="check" id="c-2"></div>
-                    </div>
-                    <div class="sub-quart" id="q-2">
-                        <div class="bot"><p>Computer</p></div>
-                        <div class="diff"></div>
-                        <div class="diff"></div>
-                        <div class="diff"></div>
-                    </div>
-                </div>
-            </div>
+    <header>
+        <p class="title">Tic Tac Toe</p>
+        <div class="inputs">
+            <button class="player">Vs. Player</button>
+            <input type="text" name="" id="">
+            <input type="text" name="" id="">
+            <button class="computer">Vs. Computer</button>
+          </div>
+        <div class="start">
+            <button class="startButton" onclick="startGame()">Start Game!</button>
         </div>
-
-        <div class="navRight"></div>
-    </nav>
-       
-    <main>
-        <div class="mainLeft">
-            <div class="tracker">
-                <div class="playerOne"></div>
-                <div class="playerTwo"></div>
-            </div>
-        </div>
-        <div class="mainCenter"></div>
-        <div class="mainRight">
-            <div class="reset">
-                <div class="resetRound"></div>
-                <div class="resetGame"></div>
-            </div>
-        </div>
-    </main>
-
+    </header>
+    <main></main>
     <footer>
-        <div class="footerLeft"></div>
-        <div class="footerCenter"></div>
-        <div class="footerRight"></div>
+        <div class="credits">
+            <h6>credits</h6>
+        </div>
     </footer>
 </body>
 </html>
