@@ -6,15 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
-    <script defer>
-        
-        
-        function startGame() {
-            let inputs = document.querySelector('.inputs');
-            let main = document.querySelector('main');
-            inputs.style = "display: none";
-            main.style = "flex-grow: 5";
-        }
+    <script src="script.js" defer></script>
     </script>
 </head>
 <body>
@@ -22,21 +14,25 @@
         <p class="title">Tic Tac Toe</p>
         <div class="inputs">
             <div class="start">
-                <button class="startButton" onclick="startGame()">Start Game!</button>
+                <button class="startButton">Start Game!</button>
             </div>
             <div class="player">
                 <button id="player">Vs. Player</button>
-                <input type="text" placeholder="Player One">
-                <input type="text" placeholder="Player Two">
+                <input type="text" class="text" placeholder="Player One">
+                <input type="text" class="text" placeholder="Player Two">
             </div>
             <div class="computer">
                 <button id="computer">Vs. Computer</button>
-                <input type="text" placeholder="Player One">
+                <input type="text" class="text" placeholder="Player One">
             </div>
           </div>
        
     </header>
-    <main></main>
+
+    <main>
+        <div class="gameBoard"></div>
+    </main>
+
     <footer>
         <div class="credits">
             <h6>credits</h6>
