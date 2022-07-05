@@ -12,13 +12,13 @@ const GameSetup = (() => {
       function addTurn(){
         return _turnCount++;
       }
-      
+
     return {playerName, playerNum, addTurn };
   };
 
 
  //Inherit prototype of Player, create AI Methods.
-  const _Computer = (playerName, playerNum) => {
+  const _Computer = (playerName = "Computer", playerNum) => {
 
     const playerSettings = _Player(playerName, playerNum);
 
@@ -52,7 +52,7 @@ const GameSetup = (() => {
     const playerScores = document.querySelectorAll('.playersContainer > div > :last-child');
     for (let x = 0; x < 2; x++){
       playerNames[x].textContent = `${players[x].playerName}` + '\'s Score:';
-      playerScores[x].textContent = `${players[x].winCount}`;
+      playerScores[x].textContent = 0;
     };
   };
 
@@ -60,9 +60,8 @@ const GameSetup = (() => {
  //Assign Event Handling to our Start Buttons + Conditions for Deciding Game State.
   _startButtons.forEach(startButton => startButton.addEventListener('click', (e) => {
     e.preventDefault();
-
    /*First Select all Form Text Fields related to our Start Buttons*/
-    let inputs = (() => {
+    const inputs = (() => {
         const positives = [];
           let textBoxes = document.querySelectorAll('input[type=text]');
             for (x = 0; x < textBoxes.length; x++){
@@ -76,11 +75,11 @@ const GameSetup = (() => {
    /*Create our Player Objects */
     const createPlayers = (() => {
       for (x = 0; x < inputs.length; x++){
-        let newPlayer = _Player(inputs[x], x+1);
+        let newPlayer = _Player(inputs[x] || "Player " + (x+1), x+1);
         players.push(newPlayer);
       }
       if (players.length < 2){
-        let newComputer = _Computer('Computer', 2) //Create our Computer Object
+        let newComputer = _Computer(undefined, 2) //Create our Computer Object
         players.push(newComputer);
       };
       //Immediately Increment the first players Turn Count.
@@ -100,7 +99,7 @@ const Game = (() => {
  //When we first Mouseover our GameBoard, apply EventHandler's to each of our nine sections.
   const bindEventApplication = document.querySelector('.gameBoard').addEventListener('mouseover', (e) => {
       GameSetup.gameBoard.forEach(gbSection => gbSection.addEventListener('click', (e) => {
-
+        //Decide If we apply an X or O.
          if (GameSetup.players[0].addTurn() > GameSetup.players[1].addTurn()){
            e.target.textContent = "O";
            GameSetup.players[1].addTurn();
@@ -111,7 +110,4 @@ const Game = (() => {
          }
     }));
   }, {once: true});
- 
-  return {};
-
 })();
