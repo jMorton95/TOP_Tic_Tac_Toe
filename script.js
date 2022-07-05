@@ -1,42 +1,55 @@
 const GameSetup = (() => {
   const players = [];
-  let gameBoard;
   const _startButtons = document.querySelectorAll('.startButton');
   
-//Factory Functions that Return our Player or Computer Objects.
+
+ //Factory Functions that Return our Player or Computer Objects.
   const _Player = (playerName, playerNum) => {
-
     let winCount = 0;
-    function addWin(){
-      winCount++;
-      console.log(winCount);
-    }
-
+      function addWin(){
+        winCount++;
+      }
     return {playerName, playerNum, winCount, addWin};
   };
-//Inherit prototype of Player, create AI Methods.
+
+
+ //Inherit prototype of Player, create AI Methods.
   const _Computer = (playerName, playerNum) => {
     const playerSettings = _Player(playerName, playerNum);
-    
+
     const iAmAComputer = () => { console.log(playerName) };
-  /*Object.assign to return a Computer Object with our Inherited properties
+   /*Object.assign to return a Computer Object with our Inherited properties
     and our Computer only Methods*/
     return Object.assign({}, playerSettings, {iAmAComputer});
   };
    
-//Create and Append 9 GameBoard Section Elements.
+
+ //Create and Append 9 GameBoard Section Elements.
   function _startGame(){
-    gameBoard = document.querySelector('.gameBoard');
+    const gameBoard = document.querySelector('.gameBoard');
     for (let x = 0; x < 9; x++){
         const element = document.createElement('div');
         element.classList.add('gbSection');
         gameBoard.append(element);
       }
-    gameBoard = document.querySelectorAll('.gbSection');
+    
+   //Hide Inputs and Resize Main.
     let inputContainer = document.querySelector('.inputs');
     let main = document.querySelector('main');
     inputContainer.style = "display: none";
     main.style = "flex-grow: 8";
+  
+   //Render Player Info
+    const playersContainer = document.querySelector('.playersContainer');
+    playersContainer.style = "display: flex";
+    
+    const playerNames = document.querySelectorAll('.playersContainer > div > :first-child');
+    const playerScores = document.querySelectorAll('.playersContainer > div > :last-child');
+    for (let x = 0; x < 2; x++){
+      playerNames[x].textContent = `${players[x].playerName}` + '\'s Score:';
+      playerScores[x].textContent = `${players[x].winCount}`;
+    }
+
   };
   
 //Assign Event Handling to our Start Buttons + Conditions for Deciding Game State.
@@ -68,12 +81,17 @@ const GameSetup = (() => {
    })();
    
    _startGame();
+   
 
   }));
 
-return { players, gameBoard };
+return { players };
 })();
 
-const GameBoard = (() => {
+
+const Game = (() => {
+  const gameBoard = document.querySelectorAll('.gbSection');
+
+  return {};
 
 })();

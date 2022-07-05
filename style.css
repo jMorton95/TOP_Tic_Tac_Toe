@@ -5,7 +5,7 @@
     --dark:  hsl(220, 50%, 18%);
     --light: hsl(220, 60%, 84%);
     --purple: hsl(297, 70%, 25%);
-    --shadowSize: 6px 4px;
+    --titleShadowSize: 6px 4px;
 
 }
 *{
@@ -13,22 +13,22 @@
     padding: 0px;
     margin: 0px;
     color: var(--dark);
-    transition: all 0.5s linear;
+    transition: all 1s linear;
     
 }
 /* --- Media Queries and KeyFrames --- */
 @media only screen and (max-width: 1300px)  {
     /*Small Screens (I.E My Laptop)
       To make the Main text take up less screen space, scale all attributes appropriately*/
-    p{
+    .title{
         font-size: 3rem;
-        --shadowSize: 4px 3px;
+        --titleShadowSize: 4px 3px;
         animation: animate 5s ease infinite;
     }
 }
 @media only screen and (min-width: 1301px) {
     /*Large Screens (I.E My PC Monitor)*/
-    p{
+    .title{
         font-size: 5rem;
         animation: animate 5s linear infinite;
     }
@@ -38,20 +38,21 @@
     /*Swap our texts colour with it's shadow for a pulsing effect*/
     0% { 
         color: var(--light);
-        text-shadow: var(--shadowSize) var(--purple);
+        text-shadow: var(--titleShadowSize) var(--purple);
       }
     50% { 
         color: var(--purple);
-        text-shadow: var(--shadowSize) var(--light); 
+        text-shadow: var(--titleShadowSize) var(--light); 
      }
     100% { 
         color: var(--light);
-        text-shadow: var(--shadowSize) var(--purple);
+        text-shadow: var(--titleShadowSize) var(--purple);
      }
 }
 /* --- General Page Structure ---*/
 body{
     display: flex;
+    background-color: rgba(0, 0, 0, 0.5);
     flex-direction: column;
     width: 100vw;
     height: 100vh;
@@ -155,7 +156,33 @@ form{
     grid: repeat(3, 1fr) / repeat(3, 1fr);
 }
 .gbSection{
-    border: 1px solid black;
+    border: 1px solid white;
 }
 
+/* --- Player Properties --- */
+
+.playersContainer{
+    display: none;
+    justify-content: space-between;
+    height: 50px;
+    width: min(500, 25vw);
+}
+.playersContainer > :first-child{
+    margin-right: 10px;
+}
+.playersContainer > div{
+    display: flex;
+    height: 100%;
+    width: max-content;
+}
+.playersContainer p{
+    color: var(--light);
+    text-shadow: 2px 2px var(--purple);
+    font-size: 1rem;
+    flex-grow: 1;
+}
+.playersContainer > div > :last-child{
+    width: 30px;
+    text-align: right;
+}
 
