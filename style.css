@@ -197,6 +197,8 @@ form{
     flex-grow: 1;
 }
 .playersContainer > div > :last-child{
+    color: var(--dark);
+    text-shadow: 2px 2px var(--purple);
     width: 30px;
     text-align: right;
 }
