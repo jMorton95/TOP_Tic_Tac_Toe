@@ -10,12 +10,10 @@ Players should be able to enter their own names for a personalised look and the 
 An AI Mode can finally be added so a player can play against the computer (optional difficulty modes to be added).
 
 
-
 TODO:
+- Computer AI Objects.
+- 
 
-Find solution for adding classes to Elements through Factory Function WHILE mouseover is active.
 
-Embed Event Listeners into privately scoped function.
 
-Revert to Default when Sub-Half is exited.
---Added with Mouseout Event, but require more complete solution.
+Demo: https://jmorton95.github.io/TOP_Tic_Tac_Toe/
