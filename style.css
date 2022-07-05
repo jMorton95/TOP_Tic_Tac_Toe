@@ -69,6 +69,7 @@ main{
     justify-content: center;
     align-items: start;
     flex: 0 1 auto;
+    max-height: 66%;
 }
 footer{
     display: flex;
@@ -134,7 +135,6 @@ button:hover{
 }
 form{
     display: none;
-    
 }
 
 /*Control display of Form Elements when Selecting Game Modes*/
@@ -155,8 +155,23 @@ form{
     aspect-ratio: 1/1;
     grid: repeat(3, 1fr) / repeat(3, 1fr);
 }
-.gbSection{
-    border: 1px solid white;
+
+/*Create Borders that don't overlap*/
+.gameBoard > div{
+    display: flex;
+    font-size: 3rem;
+    color: var(--dark);
+    /* text-shadow: 2px 2px var(--light); */
+    align-items: center;
+    justify-content: center;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+}
+.gameBoard > :nth-child(3n){
+    border-right: 2px solid white;
+}
+.gameBoard > :nth-last-child(-n+3) {
+    border-bottom: 2px solid white;
 }
 
 /* --- Player Properties --- */
