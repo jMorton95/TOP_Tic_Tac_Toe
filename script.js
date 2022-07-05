@@ -5,12 +5,23 @@ const GameSetup = (() => {
   
 //Factory Functions that Return our Player or Computer Objects.
   const _Player = (playerName, playerNum) => {
-    
-/*Need to add properties for incrementing a win counter*/
-    return {playerName, playerNum};
+
+    let winCount = 0;
+    function addWin(){
+      winCount++;
+      console.log(winCount);
+    }
+
+    return {playerName, playerNum, winCount, addWin};
   };
-  const _Computer = () => {
-    return {};
+//Inherit prototype of Player, create AI Methods.
+  const _Computer = (playerName, playerNum) => {
+    const playerSettings = _Player(playerName, playerNum);
+    
+    const iAmAComputer = () => { console.log(playerName) };
+  /*Object.assign to return a Computer Object with our Inherited properties
+    and our Computer only Methods*/
+    return Object.assign({}, playerSettings, {iAmAComputer});
   };
    
 //Create and Append 9 GameBoard Section Elements.
@@ -51,7 +62,7 @@ const GameSetup = (() => {
         players.push(newPlayer);
       }
       if (players.length < 2){
-        let newComputer = { computerName: 'Bot' }; //Later Instantiate Computer Object from Function here.
+        let newComputer = _Computer('Computer', 2) //Create our Computer Object
         players.push(newComputer);
       };
    })();
