@@ -158,18 +158,7 @@ const Game = (() => {
              for (let x = 2; x < 7; x = x+2){
               GameSetup.gameBoard[x].style = "background-color: red";
             }}
-
-        
-        
-          
       })(_gameState);
-
-      /*
-      0 1 2
-      3 4 5
-      6 7 8 
-      */
-      
     }));
   }, {once: true});
 })();
