@@ -136,19 +136,23 @@ const Game = (() => {
             for (let x = 3; x < 6; x++){
               GameSetup.gameBoard[x].style = "background-color: red";
             }}
-      //Verticals
         else if (gS[6] !== undefined && gS[6] == gS[7] && gS[7] == gS[8]){
             for (let x = 6; x < 9; x++){
               GameSetup.gameBoard[x].style = "background-color: red";
             }}
+      //Verticals
         else if (gS[0] !== undefined && gS[0] == gS[3] && gS[3] == gS[6]){
             for (let x = 0; x < 7; x = x+3){
               GameSetup.gameBoard[x].style = "background-color: red";
             }}
         else if (gS[1] !== undefined && gS[1] == gS[4] && gS[4] == gS[7]){
-          for (let x = 1; x < 8; x = x+3){
-            GameSetup.gameBoard[x].style = "background-color: red";
-          }}
+            for (let x = 1; x < 8; x = x+3){
+              GameSetup.gameBoard[x].style = "background-color: red";
+            }}
+        else if (gS[2] !== undefined && gS[2] == gS[5] && gS[5] == gS[8]){
+          for (let x = 2; x < 9; x = x+3){
+              GameSetup.gameBoard[x].style = "background-color: red";
+            }}
       //Diagnonals
         else if (gS[0] !== undefined && gS[0] == gS[4] && gS[4] == gS[8]){
             for (let x = 0; x < 9; x = x+4){
