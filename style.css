@@ -154,6 +154,8 @@ form{
     height: 75%;
     aspect-ratio: 1/1;
     grid: repeat(3, 1fr) / repeat(3, 1fr);
+    user-select: none;
+    cursor: pointer;
 }
 
 /*Create Borders that don't overlap*/

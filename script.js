@@ -96,18 +96,80 @@ return { players, gameBoard };
 
 
 const Game = (() => {
+ //Create an array of 9 empty values for later referencing. Used for finding Win Conditions.
+  const _gameState = (() => {
+    let internalBoard = [];
+      for (x = 0; x < 9; x++){
+        internalBoard.push(undefined);
+        };
+    return internalBoard;
+  })();
+
  //When we first Mouseover our GameBoard, apply EventHandler's to each of our nine sections.
   const bindEventApplication = document.querySelector('.gameBoard').addEventListener('mouseover', (e) => {
       GameSetup.gameBoard.forEach(gbSection => gbSection.addEventListener('click', (e) => {
-        //Decide If we apply an X or O.
-         if (GameSetup.players[0].addTurn() > GameSetup.players[1].addTurn()){
-           e.target.textContent = "O";
-           GameSetup.players[1].addTurn();
-            
-         } else {
-           e.target.textContent = "X";
-           GameSetup.players[0].addTurn();
-         }
+
+        //Check if GameBoard Section is empty, then decide if we apply an X or O.
+        if (e.target.textContent == ""){
+          const turnPosition = GameSetup.gameBoard.indexOf(e.target);
+          const playTurn = (() => {
+            if (GameSetup.players[0].addTurn() > GameSetup.players[1].addTurn()){
+              e.target.textContent = "O";
+              _gameState[turnPosition] = 0;
+              GameSetup.players[1].addTurn();
+            } else {
+              e.target.textContent = "X";
+              _gameState[turnPosition] = 1;
+              GameSetup.players[0].addTurn();
+            }
+        })();
+      }
+      
+      const winCondition = ((gS) => {
+    //Ugly Comparison of all WinConditions.
+      //Horizontals
+        if (gS[0] !== undefined && gS[0] == gS[1] && gS[1] == gS[2]){
+          for (let x = 0; x < 3; x++){
+            GameSetup.gameBoard[x].style = "background-color: red";
+            }}
+        else if (gS[3] !== undefined && gS[3] == gS[4] && gS[4] == gS[5]){
+            for (let x = 3; x < 6; x++){
+              GameSetup.gameBoard[x].style = "background-color: red";
+            }}
+      //Verticals
+        else if (gS[6] !== undefined && gS[6] == gS[7] && gS[7] == gS[8]){
+            for (let x = 6; x < 9; x++){
+              GameSetup.gameBoard[x].style = "background-color: red";
+            }}
+        else if (gS[0] !== undefined && gS[0] == gS[3] && gS[3] == gS[6]){
+            for (let x = 0; x < 7; x = x+3){
+              GameSetup.gameBoard[x].style = "background-color: red";
+            }}
+        else if (gS[1] !== undefined && gS[1] == gS[4] && gS[4] == gS[7]){
+          for (let x = 1; x < 8; x = x+3){
+            GameSetup.gameBoard[x].style = "background-color: red";
+          }}
+      //Diagnonals
+        else if (gS[0] !== undefined && gS[0] == gS[4] && gS[4] == gS[8]){
+            for (let x = 0; x < 9; x = x+4){
+              GameSetup.gameBoard[x].style = "background-color: red";
+            }}
+        else if (gS[2] !== undefined && gS[2] == gS[4] && gS[4] == gS[6]){
+             for (let x = 2; x < 7; x = x+2){
+              GameSetup.gameBoard[x].style = "background-color: red";
+            }}
+
+        
+        
+          
+      })(_gameState);
+
+      /*
+      0 1 2
+      3 4 5
+      6 7 8 
+      */
+      
     }));
   }, {once: true});
 })();
