@@ -198,13 +198,17 @@ const Game = (() => {
         let win;
          //First check if any WinConditions are found before executing the end of the round.
           if((win = _winCondition(_gameState)) !== undefined){
+            //Then stop further inputs on the board.
             GameSetup.gameBoardContainer.classList.toggle('gameBoardNoClick');
+            /*In this block we execute code if a player has WON
+              Apply our winning class colours*/
             if (win.length < 4){
               for (let x = 0; x < win.length; x++){
                 setTimeout(() => {
                   win[x].classList.toggle('winners');
                 }, x * 250);
               };
+              /* Check if the winner was an O or X, then render the Winner's name and increment their score.*/
                 if (e.target.textContent == "O"){
                     let winnerScore = document.querySelector('.p1Score');
                     winnerScore.textContent = parseInt(winnerScore.textContent) + 1;
@@ -214,6 +218,7 @@ const Game = (() => {
                     winnerScore.textContent = parseInt(winnerScore.textContent) + 1;
                     document.querySelector('.title').textContent = (GameSetup.players[1].playerName + ' Wins!');
                   }
+              /*Execute this block if the game DRAWS, assign our Draw CSS class to all blocks and reset the text.*/
               } else if (win.length > 4){
                   for (let x = 0; x < win.length; x++){
                     document.querySelector('.title').textContent = 'Draw';
@@ -223,7 +228,7 @@ const Game = (() => {
                     }, x * 250);
                   };
               }
-        //Reset Round
+        //Reset game, preserve scores but set-up a new round.
         _gameState = cleanState();
         setTimeout(() => {
           resetRound(win);
