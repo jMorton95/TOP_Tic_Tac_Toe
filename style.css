@@ -79,6 +79,7 @@ footer{
 
 /* --- Global Element Styles ---*/
 p{
+    -webkit-user-select: none;
     user-select: none;
     font-weight: bold;
 }
@@ -154,6 +155,7 @@ form{
     height: 75%;
     aspect-ratio: 1/1;
     grid: repeat(3, 1fr) / repeat(3, 1fr);
+    -webkit-user-select: none;
     user-select: none;
     cursor: pointer;
 }
@@ -174,6 +176,12 @@ form{
 }
 .gameBoard > :nth-last-child(-n+3) {
     border-bottom: 2px solid white;
+}
+.winners{
+    background-color: red;
+}
+.gameBoardNoClick{
+    pointer-events: none;
 }
 
 /* --- Player Properties --- */

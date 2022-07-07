@@ -2,6 +2,7 @@
 const GameSetup = (() => {
   const players = [];
   const gameBoard = [];
+  const gameBoardContainer = document.querySelector('.gameBoard');
   const _startButtons = document.querySelectorAll('.startButton');
   
 
@@ -31,7 +32,6 @@ const GameSetup = (() => {
 
  //Create and Append 9 GameBoard Section Elements.
   function _startGame(){
-    const gameBoardContainer = document.querySelector('.gameBoard');
     for (let x = 0; x < 9; x++){
         const element = document.createElement('div');
         element.classList.add('gbSection');
@@ -91,19 +91,78 @@ const GameSetup = (() => {
    _startGame();
   }));
 
-return { players, gameBoard };
+return { players, gameBoard, gameBoardContainer };
 })();
 
 
 const Game = (() => {
- //Create an array of 9 empty values for later referencing. Used for finding Win Conditions.
-  const _gameState = (() => {
+  
+  function cleanState(){
     let internalBoard = [];
       for (x = 0; x < 9; x++){
         internalBoard.push(undefined);
         };
     return internalBoard;
-  })();
+    }
+    let _gameState = cleanState();
+
+  
+ //Create an array of 9 empty values for later referencing. Used for finding Win Conditions.
+ 
+
+ //Ugly Comparison of all WinConditions.
+  const _winCondition = function(gS) {
+    const winners = [];
+    //Horizontals
+    if (gS[0] !== undefined && gS[0] == gS[1] && gS[1] == gS[2]){
+      for (let x = 0; x < 3; x++){
+          winners.push(GameSetup.gameBoard[x]);
+      }}
+      else if (gS[3] !== undefined && gS[3] == gS[4] && gS[4] == gS[5]){
+          for (let x = 3; x < 6; x++){
+            winners.push(GameSetup.gameBoard[x]);
+          }}
+      else if (gS[6] !== undefined && gS[6] == gS[7] && gS[7] == gS[8]){
+          for (let x = 6; x < 9; x++){
+            winners.push(GameSetup.gameBoard[x]);
+          }}
+    //Verticals
+      else if (gS[0] !== undefined && gS[0] == gS[3] && gS[3] == gS[6]){
+          for (let x = 0; x < 7; x = x+3){
+            winners.push(GameSetup.gameBoard[x]);
+          }}
+      else if (gS[1] !== undefined && gS[1] == gS[4] && gS[4] == gS[7]){
+          for (let x = 1; x < 8; x = x+3){
+            winners.push(GameSetup.gameBoard[x]);
+          }}
+      else if (gS[2] !== undefined && gS[2] == gS[5] && gS[5] == gS[8]){
+        for (let x = 2; x < 9; x = x+3){
+            winners.push(GameSetup.gameBoard[x]);
+          }}
+    //Diagnonals
+      else if (gS[0] !== undefined && gS[0] == gS[4] && gS[4] == gS[8]){
+          for (let x = 0; x < 9; x = x+4){
+            winners.push(GameSetup.gameBoard[x]);
+          }}
+      else if (gS[2] !== undefined && gS[2] == gS[4] && gS[4] == gS[6]){
+            for (let x = 2; x < 7; x = x+2){
+            winners.push(GameSetup.gameBoard[x]);
+          }}
+    else {
+      return undefined;
+      }
+    return winners;
+  };
+
+  function resetRound(win) {
+    for (let x = 0; x < 9; x++){
+      GameSetup.gameBoard[x].textContent = "";
+    }
+    for (let y = 0; y < 3; y++){
+      win[y].classList.toggle('winners');
+    }
+    GameSetup.gameBoardContainer.classList.toggle('gameBoardNoClick');
+  }
 
  //When we first Mouseover our GameBoard, apply EventHandler's to each of our nine sections.
   const bindEventApplication = document.querySelector('.gameBoard').addEventListener('mouseover', (e) => {
@@ -121,48 +180,40 @@ const Game = (() => {
               e.target.textContent = "X";
               _gameState[turnPosition] = 1;
               GameSetup.players[0].addTurn();
-            }
+            };
         })();
-      }
+      };
+
+      //Execute when we find a winning combo.
+      (function() {
+      if((win = _winCondition(_gameState)) !== undefined){
+        GameSetup.gameBoardContainer.classList.toggle('gameBoardNoClick');
+        for (let x = 0; x < 3; x++){
+          win[x].classList.toggle('winners');
+        };
+          if (e.target.textContent == "O"){
+            
+            let winnerScore = document.querySelector('.p1Score');
+            winnerScore.textContent = parseInt(winnerScore.textContent) + 1;
+            document.querySelector('.title').textContent = (GameSetup.players[0].playerName + ' Wins!');
+
+          } else {
+            let winnerScore = document.querySelector('.p2Score');
+            winnerScore.textContent = parseInt(winnerScore.textContent) + 1;
+            document.querySelector('.title').textContent = (GameSetup.players[1].playerName + ' Wins!');
+          }
+
+        _gameState = cleanState();
+        
+        setTimeout(() => {
+          resetRound(win);
+        }, "3000");
+        
+      }})();
+
       
-      const winCondition = ((gS) => {
-    //Ugly Comparison of all WinConditions.
-      //Horizontals
-        if (gS[0] !== undefined && gS[0] == gS[1] && gS[1] == gS[2]){
-          for (let x = 0; x < 3; x++){
-            GameSetup.gameBoard[x].style = "background-color: red";
-            }}
-        else if (gS[3] !== undefined && gS[3] == gS[4] && gS[4] == gS[5]){
-            for (let x = 3; x < 6; x++){
-              GameSetup.gameBoard[x].style = "background-color: red";
-            }}
-        else if (gS[6] !== undefined && gS[6] == gS[7] && gS[7] == gS[8]){
-            for (let x = 6; x < 9; x++){
-              GameSetup.gameBoard[x].style = "background-color: red";
-            }}
-      //Verticals
-        else if (gS[0] !== undefined && gS[0] == gS[3] && gS[3] == gS[6]){
-            for (let x = 0; x < 7; x = x+3){
-              GameSetup.gameBoard[x].style = "background-color: red";
-            }}
-        else if (gS[1] !== undefined && gS[1] == gS[4] && gS[4] == gS[7]){
-            for (let x = 1; x < 8; x = x+3){
-              GameSetup.gameBoard[x].style = "background-color: red";
-            }}
-        else if (gS[2] !== undefined && gS[2] == gS[5] && gS[5] == gS[8]){
-          for (let x = 2; x < 9; x = x+3){
-              GameSetup.gameBoard[x].style = "background-color: red";
-            }}
-      //Diagnonals
-        else if (gS[0] !== undefined && gS[0] == gS[4] && gS[4] == gS[8]){
-            for (let x = 0; x < 9; x = x+4){
-              GameSetup.gameBoard[x].style = "background-color: red";
-            }}
-        else if (gS[2] !== undefined && gS[2] == gS[4] && gS[4] == gS[6]){
-             for (let x = 2; x < 7; x = x+2){
-              GameSetup.gameBoard[x].style = "background-color: red";
-            }}
-      })(_gameState);
+      
+      
     }));
   }, {once: true});
 })();
