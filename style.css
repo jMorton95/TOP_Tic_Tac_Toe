@@ -180,6 +180,9 @@ form{
 .winners{
     background-color: red;
 }
+.draw{
+    background-color: blue;
+}
 .gameBoardNoClick{
     pointer-events: none;
 }

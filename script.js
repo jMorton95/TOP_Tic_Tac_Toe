@@ -148,6 +148,11 @@ const Game = (() => {
             for (let x = 2; x < 7; x = x+2){
             winners.push(GameSetup.gameBoard[x]);
           }}
+      else if (gS.includes(undefined) == false){
+          for (let x = 0; x < 9; x++){
+            winners.push(GameSetup.gameBoard[x]);
+          }  
+      }
     else {
       return undefined;
       }
@@ -158,8 +163,9 @@ const Game = (() => {
     for (let x = 0; x < 9; x++){
       GameSetup.gameBoard[x].textContent = "";
     }
-    for (let y = 0; y < 3; y++){
-      win[y].classList.toggle('winners');
+    for (let y = 0; y < win.length; y++){
+      win[y].classList.remove('winners');
+      win[y].classList.remove('draw');
     }
     GameSetup.gameBoardContainer.classList.toggle('gameBoardNoClick');
   }
@@ -186,25 +192,30 @@ const Game = (() => {
 
       //Execute when we find a winning combo.
       (function() {
-      if((win = _winCondition(_gameState)) !== undefined){
-        GameSetup.gameBoardContainer.classList.toggle('gameBoardNoClick');
-        for (let x = 0; x < 3; x++){
-          win[x].classList.toggle('winners');
-        };
-          if (e.target.textContent == "O"){
+        let win;
+          if((win = _winCondition(_gameState)) !== undefined){
+            GameSetup.gameBoardContainer.classList.toggle('gameBoardNoClick');
+            if (win.length < 4){
+              for (let x = 0; x < win.length; x++){
+                win[x].classList.toggle('winners');
+              };
+                if (e.target.textContent == "O"){
+                    let winnerScore = document.querySelector('.p1Score');
+                    winnerScore.textContent = parseInt(winnerScore.textContent) + 1;
+                    document.querySelector('.title').textContent = (GameSetup.players[0].playerName + ' Wins!');
+                  } else {
+                    let winnerScore = document.querySelector('.p2Score');
+                    winnerScore.textContent = parseInt(winnerScore.textContent) + 1;
+                    document.querySelector('.title').textContent = (GameSetup.players[1].playerName + ' Wins!');
+                  }
+              } else if (win.length > 4){
+                  for (let x = 0; x < win.length; x++){
+                    document.querySelector('.title').textContent = 'Draw';
+                    win[x].classList.toggle('draw');
+                  };
+              }
             
-            let winnerScore = document.querySelector('.p1Score');
-            winnerScore.textContent = parseInt(winnerScore.textContent) + 1;
-            document.querySelector('.title').textContent = (GameSetup.players[0].playerName + ' Wins!');
-
-          } else {
-            let winnerScore = document.querySelector('.p2Score');
-            winnerScore.textContent = parseInt(winnerScore.textContent) + 1;
-            document.querySelector('.title').textContent = (GameSetup.players[1].playerName + ' Wins!');
-          }
-
         _gameState = cleanState();
-        
         setTimeout(() => {
           resetRound(win);
         }, "3000");
