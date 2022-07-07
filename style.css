@@ -165,7 +165,7 @@ form{
     display: flex;
     font-size: 3rem;
     color: var(--dark);
-    /* text-shadow: 2px 2px var(--light); */
+    text-shadow: 2px 2px var(--light); 
     align-items: center;
     justify-content: center;
     border-top: 2px solid white;

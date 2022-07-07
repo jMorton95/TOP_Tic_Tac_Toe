@@ -163,9 +163,12 @@ const Game = (() => {
     for (let x = 0; x < 9; x++){
       GameSetup.gameBoard[x].textContent = "";
     }
+    //Stagger the change in ClassList by 250ms per Section.
     for (let y = 0; y < win.length; y++){
-      win[y].classList.remove('winners');
-      win[y].classList.remove('draw');
+      setTimeout(() => {
+        win[y].classList = ('gbSection');
+      }, y * 250);
+      
     }
     GameSetup.gameBoardContainer.classList.toggle('gameBoardNoClick');
   }
@@ -191,13 +194,16 @@ const Game = (() => {
       };
 
       //Execute when we find a winning combo.
-      (function() {
+      (function roundEnd() {
         let win;
+         //First check if any WinConditions are found before executing the end of the round.
           if((win = _winCondition(_gameState)) !== undefined){
             GameSetup.gameBoardContainer.classList.toggle('gameBoardNoClick');
             if (win.length < 4){
               for (let x = 0; x < win.length; x++){
-                win[x].classList.toggle('winners');
+                setTimeout(() => {
+                  win[x].classList.toggle('winners');
+                }, x * 250);
               };
                 if (e.target.textContent == "O"){
                     let winnerScore = document.querySelector('.p1Score');
@@ -211,10 +217,13 @@ const Game = (() => {
               } else if (win.length > 4){
                   for (let x = 0; x < win.length; x++){
                     document.querySelector('.title').textContent = 'Draw';
-                    win[x].classList.toggle('draw');
+                    setTimeout(() => {
+                      win[x].classList.toggle('draw');
+                      GameSetup.gameBoard[x].textContent = "";
+                    }, x * 250);
                   };
               }
-            
+        //Reset Round
         _gameState = cleanState();
         setTimeout(() => {
           resetRound(win);
