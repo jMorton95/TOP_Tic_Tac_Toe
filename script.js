@@ -23,11 +23,28 @@ const GameSetup = (() => {
 
     const playerSettings = _Player(playerName, playerNum);
 
-    const iAmAComputer = () => { console.log(playerName) };
+    const playRound = (gameState, gameBoard) => { 
+      _boardState = [];
+        for (x = 0; x < 9; x++){
+          if (gameState[x] == undefined){
+          _boardState[x] = "available";
+        }
+      }
+      _availableSections = [];
+        for (y = 0; y < 9; y++){
+          if (_boardState[y] == "available"){
+            _availableSections.push(gameBoard[y]);
+          }
+        }
+        console.log(_availableSections);
+      _availableSections[Math.floor(Math.random() * _availableSections.length)].textContent = "X";
+      //Possibly have return value for matching to GameState.
+      }
+     
    /*Object.assign to return a Computer Object with our Inherited properties
     and our Computer only Methods*/
-    return Object.assign({}, playerSettings, {iAmAComputer});
-  };
+    return Object.assign({}, playerSettings, { playRound });
+    };
    
 
  //Create and Append 9 GameBoard Section Elements.
@@ -186,9 +203,16 @@ const Game = (() => {
               _gameState[turnPosition] = 0;
               GameSetup.players[1].addTurn();
             } else {
+              if (GameSetup.players[1].playerName == "Computer"){
+                console.log(GameSetup.players[1].playerName)
+                GameSetup.players[1].playRound(_gameState, GameSetup.gameBoard);
+                //Update GameState
+              }
+              else{
               e.target.textContent = "X";
               _gameState[turnPosition] = 1;
               GameSetup.players[0].addTurn();
+              }
             };
         })();
       };
