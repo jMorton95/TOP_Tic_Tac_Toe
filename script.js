@@ -22,7 +22,7 @@ const GameSetup = (() => {
   const _Computer = (playerName = "Computer", playerNum) => {
 
     const playerSettings = _Player(playerName, playerNum);
-
+    //let roundSelection;
     const playRound = (gameState, gameBoard) => { 
       _boardState = [];
         for (x = 0; x < 9; x++){
@@ -36,9 +36,8 @@ const GameSetup = (() => {
             _availableSections.push(gameBoard[y]);
           }
         }
-        console.log(_availableSections);
-      _availableSections[Math.floor(Math.random() * _availableSections.length)].textContent = "X";
-      //Possibly have return value for matching to GameState.
+        //console.log(_availableSections);
+      return _availableSections[Math.floor(Math.random() * _availableSections.length)];
       }
      
    /*Object.assign to return a Computer Object with our Inherited properties
@@ -202,13 +201,17 @@ const Game = (() => {
               e.target.textContent = "O";
               _gameState[turnPosition] = 0;
               GameSetup.players[1].addTurn();
+
+              
             } else {
               if (GameSetup.players[1].playerName == "Computer"){
-                console.log(GameSetup.players[1].playerName)
-                GameSetup.players[1].playRound(_gameState, GameSetup.gameBoard);
-                //Update GameState
+                const computerSelection = GameSetup.players[1].playRound(_gameState, GameSetup.gameBoard);
+                _gameState[GameSetup.gameBoard.indexOf(computerSelection)] = 1;
+                computerSelection.textContent = "X";
+                GameSetup.players[0].addTurn();
+                //Consider function for returning the selection of computer
               }
-              else{
+              else {
               e.target.textContent = "X";
               _gameState[turnPosition] = 1;
               GameSetup.players[0].addTurn();
