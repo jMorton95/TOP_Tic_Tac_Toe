@@ -202,16 +202,17 @@ const Game = (() => {
               _gameState[turnPosition] = 0;
               GameSetup.players[1].addTurn();
 
-              
+                if (GameSetup.players[1].playerName == "Computer"){
+                  setTimeout(() => {
+                    const computerSelection = GameSetup.players[1].playRound(_gameState, GameSetup.gameBoard);
+                  _gameState[GameSetup.gameBoard.indexOf(computerSelection)] = 1;
+                  console.log(GameSetup.gameBoard.indexOf(computerSelection));
+                  computerSelection.textContent = "X";
+                  GameSetup.players[0].addTurn();
+                  }, "500");
+                  
+                
             } else {
-              if (GameSetup.players[1].playerName == "Computer"){
-                const computerSelection = GameSetup.players[1].playRound(_gameState, GameSetup.gameBoard);
-                _gameState[GameSetup.gameBoard.indexOf(computerSelection)] = 1;
-                computerSelection.textContent = "X";
-                GameSetup.players[0].addTurn();
-                //Consider function for returning the selection of computer
-              }
-              else {
               e.target.textContent = "X";
               _gameState[turnPosition] = 1;
               GameSetup.players[0].addTurn();
