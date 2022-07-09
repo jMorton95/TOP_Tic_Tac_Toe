@@ -195,27 +195,31 @@ const Game = (() => {
 
         //Check if GameBoard Section is empty, then decide if we apply an X or O.
         if (e.target.textContent == ""){
+        //turnPosition is used for storing the DOM Element we've selected per Game Round.
           const turnPosition = GameSetup.gameBoard.indexOf(e.target);
           const playTurn = (() => {
+          //Using our Player Object turn number incrementing logic, decide who's turn it is. This alternates per round.
             if (GameSetup.players[0].addTurn() > GameSetup.players[1].addTurn()){
               e.target.textContent = "O";
               _gameState[turnPosition] = 0;
               GameSetup.players[1].addTurn();
 
+              /*If we're playing against AI, after a delay create a local equivelant of turnPosition that's returned
+                from our playRound function inside of the Computer Object.
+                Then update our gameState based on the AI's targetted DOM Element, render it to HTML and then pass the next turn to the Player*/
                 if (GameSetup.players[1].playerName == "Computer"){
                   setTimeout(() => {
                     const computerSelection = GameSetup.players[1].playRound(_gameState, GameSetup.gameBoard);
-                  _gameState[GameSetup.gameBoard.indexOf(computerSelection)] = 1;
-                  console.log(GameSetup.gameBoard.indexOf(computerSelection));
-                  computerSelection.textContent = "X";
-                  GameSetup.players[0].addTurn();
+                    _gameState[GameSetup.gameBoard.indexOf(computerSelection)] = 1;
+                    computerSelection.textContent = "X";
+                    GameSetup.players[0].addTurn();
                   }, "500");
-                  
-                
-            } else {
-              e.target.textContent = "X";
-              _gameState[turnPosition] = 1;
-              GameSetup.players[0].addTurn();
+
+              } else {
+                //Same as the first section of our game, incurred in a Player Vs. Player game on Player 2's turn.
+                e.target.textContent = "X";
+                _gameState[turnPosition] = 1;
+                GameSetup.players[0].addTurn();
               }
             };
         })();
@@ -263,10 +267,7 @@ const Game = (() => {
         }, "3000");
         
       }})();
-
-      
-      
-      
     }));
   }, {once: true});
+
 })();
