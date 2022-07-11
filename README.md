@@ -9,11 +9,9 @@ Players should be able to enter their own names for a personalised look and the 
 
 An AI Mode can finally be added so a player can play against the computer (optional difficulty modes to be added).
 
-
-TODO:
-- Computer AI Objects.
-- 
-
-
+Key Takeaways from this Project:  
+-- Fully understanding and implementing dynamic and responsive Flexbox layouts.  
+-- Taking advantage of Scopes and Closures to keep my functions self-contained and protected.  
+-- Implementing an in-depth algorithm for state checking/updating. (To Be revisited later when my JavaScript skills are stronger)  
 
 Demo: https://jmorton95.github.io/TOP_Tic_Tac_Toe/
