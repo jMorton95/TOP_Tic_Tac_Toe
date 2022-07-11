@@ -184,7 +184,6 @@ const Game = (() => {
       setTimeout(() => {
         win[y].classList = ('gbSection');
       }, y * 250);
-      
     }
     GameSetup.gameBoardContainer.classList.toggle('gameBoardNoClick');
   }
@@ -215,12 +214,13 @@ const Game = (() => {
                     GameSetup.players[0].addTurn();
                   }, "500");
 
+              }  
+
               } else {
                 //Same as the first section of our game, incurred in a Player Vs. Player game on Player 2's turn.
                 e.target.textContent = "X";
                 _gameState[turnPosition] = 1;
                 GameSetup.players[0].addTurn();
-              }
             };
         })();
       };
