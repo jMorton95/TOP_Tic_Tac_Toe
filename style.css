@@ -57,6 +57,9 @@ body{
     width: 100vw;
     height: 100vh;
 }
+a{
+    font-size: 0.7rem;
+}
 header{
     display: flex;
     flex-direction: column;
@@ -71,10 +74,17 @@ main{
     flex: 0 1 auto;
     max-height: 66%;
 }
-footer{
+footer {
     display: flex;
     justify-content: center;
-    height: 35px;
+    height: max-content;
+    
+}
+.credits{
+    display: flex;
+    width: 300px;
+    justify-content: space-between;
+    align-items: end;
 }
 
 /* --- Global Element Styles ---*/
@@ -163,6 +173,8 @@ form{
 /*Create Borders that don't overlap*/
 .gameBoard > div{
     display: flex;
+    min-height: 75px;
+    min-width: 75px;
     font-size: 3rem;
     color: var(--dark);
     text-shadow: 2px 2px var(--light); 
